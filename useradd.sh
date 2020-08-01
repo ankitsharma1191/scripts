@@ -1,4 +1,7 @@
 #!/bin/bash
+# Author: Ankit Sharma
+# Description: this script will help you to create and Manage users
+# Date: 1-7-2020
 echo "please provide username"
 
 read u 
