@@ -6,6 +6,8 @@ echo "please provide username"
 
 read u 
 
+
+
 grep -q $u /etc/passwd
 
 if [ $? -eq 0 ]
@@ -16,6 +18,35 @@ if [ $? -eq 0 ]
 	exit 0 
 	fi
 
-useradd $u
+echo " Please Provide user description" 
+
+read desc 
 echo 
-echo user $u Created Sucessfully
+
+echo "do you want to specify UID ( y/n )?"
+read ud
+echo
+
+	if [ $ud == y ]
+		then
+		echo "please chootse uid"
+		read uid
+			grep -q $uid /etc/passwd
+				if [ $? -eq 0 ]
+					then
+					echo $uid already exist 
+					echo Chosse anohter id
+					exit 0
+						
+				else
+				useradd $u -c "$d" -u $uid
+				echo  $u account created
+				echo
+				fi
+	elif [ $ud == n ]
+	then
+	echo "no worries we will assign uid" 
+	echo useradd $u -c "$d"
+	echo user $u created 
+	fi	
+
