@@ -6,8 +6,6 @@ echo "please provide username"
 
 read u 
 
-
-
 grep -q $u /etc/passwd
 
 if [ $? -eq 0 ]
@@ -23,30 +21,33 @@ echo " Please Provide user description"
 read desc 
 echo 
 
-echo "do you want to specify UID ( y/n )?"
+echo "please enter your password"
+read pass
+
+echo "do you want to specify UID optional ( y/n ) ?"
 read ud
 echo
 
 	if [ $ud == y ]
 		then
-		echo "please chootse uid"
+		echo "please choose uid"
 		read uid
 			grep -q $uid /etc/passwd
 				if [ $? -eq 0 ]
 					then
 					echo $uid already exist 
-					echo Chosse anohter id
+					echo Choose anohter id
 					exit 0
 						
 				else
-				useradd $u -c "$d" -u $uid
+				useradd $u -c "$d" -u $uid -p $pass
 				echo  $u account created
 				echo
 				fi
 	elif [ $ud == n ]
 	then
 	echo "no worries we will assign uid" 
-	echo useradd $u -c "$d"
+	echo useradd $u -c "$d" -p $pass
 	echo user $u created 
 	fi	
 
