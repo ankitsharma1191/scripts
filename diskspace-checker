@@ -1,0 +1,13 @@
+#!/bin/bash
+#Author: Ankit Sharma
+#Date: 1-8-2020
+#Description: This script will notify you if your disk space is crossing 90% of partition or disk
+
+b= df -h | egrep -v "tmpfs | devtmpfs" | tail -n+2 | awk '{print $5}' | cut -d '%' -f1
+for i in $b
+do
+	if [ $i -ge 90 ]
+	then 
+$	echo check disk spance $i  
+	fi
+done
